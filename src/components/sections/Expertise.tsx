@@ -30,9 +30,9 @@ export function Expertise() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {EXPERTISE.map((item, i) => (
             <ScrollReveal key={item.title} delay={i * 0.08}>
-              <div className="group h-full p-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] backdrop-blur-sm hover:border-accent/30 hover:bg-white/[0.05] transition-all duration-300 cursor-default">
+              <div className="group h-full p-6 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm hover:border-accent/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 cursor-default">
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5 bg-white/[0.06] border border-white/[0.08] group-hover:border-accent/20 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5 bg-[var(--icon-bg)] border border-[var(--card-border)] group-hover:border-accent/20 transition-colors duration-300">
                   {item.icon}
                 </div>
                 {/* Title */}

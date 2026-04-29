@@ -9,7 +9,7 @@ export function Skills() {
   return (
     <section id="skills" className="py-28 overflow-hidden">
       {/* Marquee strip */}
-      <div className="border-y border-white/[0.05] py-5 mb-24 bg-white/[0.02]">
+      <div className="border-y border-[var(--strip-border)] py-5 mb-24 bg-[var(--strip-bg)]">
         <Marquee items={MARQUEE_ITEMS} />
       </div>
 
@@ -31,7 +31,7 @@ export function Skills() {
           <div className="flex flex-wrap justify-center gap-3">
             {SKILLS.map(skill => (
               <span key={skill}
-                className="px-4 py-2 rounded-xl text-[13.5px] font-medium border border-white/[0.08] bg-white/[0.04] text-muted hover:border-accent/30 hover:text-foreground hover:bg-white/[0.07] transition-all duration-200 cursor-default"
+                className="px-4 py-2 rounded-xl text-[13.5px] font-medium border border-[var(--card-border)] bg-[var(--tag-bg)] text-muted hover:border-accent/30 hover:text-foreground hover:bg-[var(--card-bg-hover)] transition-all duration-200 cursor-default"
               >
                 {skill}
               </span>

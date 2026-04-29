@@ -58,7 +58,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-[880px]">
         <motion.div {...FADE_UP(0.3)}
-          className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full text-[12px] font-bold tracking-[1.5px] uppercase text-accent border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl"
+          className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full text-[12px] font-bold tracking-[1.5px] uppercase text-accent border border-[var(--card-border)] bg-[var(--nav-btn)] backdrop-blur-xl"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           Senior Solutions Engineer &nbsp;·&nbsp; BitGo

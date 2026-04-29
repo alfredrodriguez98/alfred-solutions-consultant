@@ -26,7 +26,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label="Toggle theme"
-      className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/[0.08] bg-white/[0.04] hover:bg-white/[0.08] text-muted hover:text-foreground transition-all duration-200"
+      className="w-9 h-9 rounded-xl flex items-center justify-center border border-[var(--card-border)] bg-[var(--nav-btn)] hover:bg-[var(--nav-btn-hover)] text-muted hover:text-foreground transition-all duration-200"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
@@ -103,7 +103,7 @@ export function Nav() {
                   {active === id && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-lg bg-white/[0.07]"
+                      className="absolute inset-0 rounded-lg bg-[var(--nav-active)]"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -120,7 +120,7 @@ export function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center border border-white/[0.08] bg-white/[0.04] text-muted"
+            className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center border border-[var(--card-border)] bg-[var(--nav-btn)] text-muted"
             onClick={() => setMenuOpen(v => !v)}
             aria-label="Toggle menu"
           >
@@ -145,7 +145,7 @@ export function Nav() {
                 <li key={link.href}>
                   <a href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block px-4 py-2.5 rounded-xl text-[15px] font-medium text-muted hover:text-foreground hover:bg-white/[0.05] transition-all duration-150"
+                    className="block px-4 py-2.5 rounded-xl text-[15px] font-medium text-muted hover:text-foreground hover:bg-[var(--card-bg-hover)] transition-all duration-150"
                   >
                     {link.label}
                   </a>

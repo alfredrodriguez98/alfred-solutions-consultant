@@ -40,7 +40,7 @@ function StatCard({ value, suffix, label, active, delay }: StatCardProps) {
 
   return (
     <ScrollReveal delay={delay}>
-      <div className="flex flex-col items-center gap-1 px-8 py-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] backdrop-blur-sm text-center">
+      <div className="flex flex-col items-center gap-1 px-8 py-6 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm text-center">
         <span className="text-[clamp(48px,6vw,72px)] font-black tracking-[-3px] leading-none bg-gradient-to-br from-accent to-accent-violet bg-clip-text text-transparent">
           {count}{suffix}
         </span>
@@ -55,7 +55,7 @@ export function Stats() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} id="stats" className="py-20 px-6 border-y border-white/[0.05]">
+    <section ref={ref} id="stats" className="py-20 px-6 border-y border-[var(--strip-border)]">
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {STATS.map((stat, i) => (
           <StatCard key={stat.label} {...stat} active={inView} delay={i * 0.1} />

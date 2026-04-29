@@ -57,7 +57,7 @@ export function About() {
         <div className="flex flex-col gap-4">
           {PILLARS.map((p, i) => (
             <ScrollReveal key={p.label} delay={0.15 + i * 0.1} from="right">
-              <div className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.07] bg-white/[0.03] backdrop-blur-sm hover:border-accent/30 hover:bg-white/[0.05] transition-all duration-300">
+              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm hover:border-accent/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300">
                 <span className="text-2xl mt-0.5">{p.icon}</span>
                 <div>
                   <p className="font-bold text-foreground mb-1">{p.label}</p>

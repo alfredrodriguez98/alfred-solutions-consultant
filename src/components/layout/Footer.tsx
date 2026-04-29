@@ -12,7 +12,7 @@ export function Footer() {
   const { display, flash } = useBlockTicker()
 
   return (
-    <footer className="border-t border-white/[0.05] py-10 px-6">
+    <footer className="border-t border-[var(--strip-border)] py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
         {/* Left — copyright + hidden hex */}

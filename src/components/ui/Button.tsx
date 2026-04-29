@@ -15,8 +15,8 @@ export function Button({ variant = 'primary', children, className, ...props }: B
       'shadow-[0_0_28px_rgba(79,142,247,0.25)] hover:opacity-90 hover:-translate-y-0.5 hover:scale-[1.02] ' +
       'hover:shadow-[0_0_40px_rgba(79,142,247,0.35)]',
     secondary:
-      'bg-white/[0.04] dark:bg-white/[0.04] border border-white/[0.08] text-foreground ' +
-      'backdrop-blur-xl hover:bg-white/[0.07] hover:border-accent/40 hover:-translate-y-0.5',
+      'bg-[var(--nav-btn)] border border-[var(--card-border)] text-foreground ' +
+      'backdrop-blur-xl hover:bg-[var(--nav-btn-hover)] hover:border-accent/40 hover:-translate-y-0.5',
   }
 
   return (
