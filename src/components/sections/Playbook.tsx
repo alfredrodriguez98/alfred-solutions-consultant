@@ -28,8 +28,29 @@ export function Playbook() {
 
         {/* Steps — horizontal on desktop, vertical on mobile */}
         <div className="relative">
-          {/* Connecting line (desktop only) */}
-          <div className="hidden lg:block absolute top-[52px] left-[calc(10%+28px)] right-[calc(10%+28px)] h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent pointer-events-none" />
+          {/* Connecting line track (desktop only) */}
+          <div className="hidden lg:block absolute top-[52px] left-[calc(10%+28px)] right-[calc(10%+28px)] h-px bg-accent/15 pointer-events-none overflow-visible">
+            {/* Traveling neon glow orb */}
+            <span
+              className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+              style={{
+                width: '120px',
+                height: '3px',
+                borderRadius: '9999px',
+                background: 'linear-gradient(90deg, transparent, #4f8ef7 40%, #a78bfa 60%, transparent)',
+                boxShadow: '0 0 8px 3px rgba(79,142,247,0.7), 0 0 20px 6px rgba(167,139,250,0.4)',
+                animation: 'neon-travel 3s ease-in-out infinite',
+              }}
+            />
+          </div>
+          <style>{`
+            @keyframes neon-travel {
+              0%   { left: -120px; opacity: 0; }
+              10%  { opacity: 1; }
+              90%  { opacity: 1; }
+              100% { left: 100%; opacity: 0; }
+            }
+          `}</style>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-4">
             {PLAYBOOK_STEPS.map((step, i) => (
