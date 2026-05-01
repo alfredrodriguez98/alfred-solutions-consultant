@@ -21,6 +21,21 @@ export const SKILLS: string[] = [
   'AWS / Cloud Infra',
 ]
 
+export interface Language {
+  name: string
+  level: 'Native' | 'Fluent' | 'Professional'
+  flag: string
+}
+
+export const LANGUAGES: Language[] = [
+  { name: 'English',   level: 'Fluent',       flag: '🇬🇧' },
+  { name: 'Tamil',     level: 'Native',       flag: '🇮🇳' },
+  { name: 'Kannada',   level: 'Professional', flag: '🇮🇳' },
+  { name: 'Malayalam', level: 'Professional', flag: '🇮🇳' },
+  { name: 'Telugu',    level: 'Professional', flag: '🇮🇳' },
+  { name: 'Hindi',     level: 'Professional', flag: '🇮🇳' },
+]
+
 export const MARQUEE_ITEMS: string[] = [
   'Digital Asset Custody',
   'MPC Wallets',

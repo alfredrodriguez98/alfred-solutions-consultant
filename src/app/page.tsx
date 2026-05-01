@@ -6,11 +6,12 @@ import { CaseStudies } from '@/components/sections/CaseStudies'
 import { Playbook }    from '@/components/sections/Playbook'
 import { Experience }  from '@/components/sections/Experience'
 import { Skills }      from '@/components/sections/Skills'
+import { Speaking }    from '@/components/sections/Speaking'
 import { Contact }     from '@/components/sections/Contact'
 
 /**
  * Home page — composing sections in the order that maximises SE portfolio impact:
- *   Hero → Stats → About → Expertise → Case Studies → Playbook → Experience → Skills → Contact
+ *   Hero → Stats → About → Expertise → Case Studies → Playbook → Experience → Skills → Speaking → Contact
  */
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <Playbook />
       <Experience />
       <Skills />
+      <Speaking />
       <Contact />
     </>
   )
