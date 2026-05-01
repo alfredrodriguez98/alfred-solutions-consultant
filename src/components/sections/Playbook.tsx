@@ -30,24 +30,24 @@ export function Playbook() {
         <div className="relative">
           {/* Connecting line track (desktop only) */}
           <div className="hidden lg:block absolute top-[52px] left-[calc(10%+28px)] right-[calc(10%+28px)] h-px bg-accent/15 pointer-events-none overflow-visible">
-            {/* Traveling neon glow orb */}
+            {/* Traveling neon glow dot */}
             <span
               className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
               style={{
-                width: '120px',
-                height: '3px',
+                width: '10px',
+                height: '10px',
                 borderRadius: '9999px',
-                background: 'linear-gradient(90deg, transparent, #4f8ef7 40%, #a78bfa 60%, transparent)',
-                boxShadow: '0 0 8px 3px rgba(79,142,247,0.7), 0 0 20px 6px rgba(167,139,250,0.4)',
-                animation: 'neon-travel 3s ease-in-out infinite',
+                background: '#a78bfa',
+                boxShadow: '0 0 6px 3px rgba(167,139,250,0.9), 0 0 18px 8px rgba(79,142,247,0.6), 0 0 32px 14px rgba(79,142,247,0.25)',
+                animation: 'neon-dot-travel 4s ease-in-out infinite',
               }}
             />
           </div>
           <style>{`
-            @keyframes neon-travel {
-              0%   { left: -120px; opacity: 0; }
-              10%  { opacity: 1; }
-              90%  { opacity: 1; }
+            @keyframes neon-dot-travel {
+              0%   { left: -10px; opacity: 0; }
+              8%   { opacity: 1; }
+              92%  { opacity: 1; }
               100% { left: 100%; opacity: 0; }
             }
           `}</style>
