@@ -1,6 +1,5 @@
 'use client'
 
-import Image          from 'next/image'
 import { useState }   from 'react'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { GradientText } from '@/components/ui/GradientText'
@@ -61,12 +60,10 @@ export function Speaking() {
               <div className="relative border-r border-[var(--card-border)]">
                 {/* Main photo */}
                 <div className="relative w-full aspect-[4/3] overflow-hidden bg-[var(--icon-bg)]">
-                  <Image
+                  <img
                     src={ev.photos[active].src}
                     alt={ev.photos[active].alt}
-                    fill
-                    className="object-cover transition-all duration-500"
-                    sizes="(max-width:1024px) 100vw, 50vw"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
                   />
                   {/* Gradient overlay bottom */}
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
@@ -84,12 +81,10 @@ export function Speaking() {
                           : 'border-transparent opacity-60 hover:opacity-90'
                       }`}
                     >
-                      <Image
+                      <img
                         src={ph.src}
                         alt={ph.alt}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
                     </button>
                   ))}
