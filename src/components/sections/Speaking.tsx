@@ -59,7 +59,7 @@ export function Speaking() {
               {/* Photo gallery */}
               <div className="relative border-r border-[var(--card-border)]">
                 {/* Main photo */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-[var(--icon-bg)]">
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-[var(--icon-bg)] group/photo">
                   <img
                     src={ev.photos[active].src}
                     alt={ev.photos[active].alt}
@@ -67,6 +67,33 @@ export function Speaking() {
                   />
                   {/* Gradient overlay bottom */}
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+
+                  {/* Prev button */}
+                  <button
+                    onClick={() => setActive((active - 1 + ev.photos.length) % ev.photos.length)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-black/40 border border-white/15 text-white backdrop-blur-sm opacity-0 group-hover/photo:opacity-100 hover:bg-black/65 hover:border-white/30 transition-all duration-200"
+                    aria-label="Previous photo"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  {/* Next button */}
+                  <button
+                    onClick={() => setActive((active + 1) % ev.photos.length)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-black/40 border border-white/15 text-white backdrop-blur-sm opacity-0 group-hover/photo:opacity-100 hover:bg-black/65 hover:border-white/30 transition-all duration-200"
+                    aria-label="Next photo"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  {/* Photo counter */}
+                  <div className="absolute bottom-3 right-3 z-10 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-sm text-white text-[11px] font-semibold tracking-wide opacity-0 group-hover/photo:opacity-100 transition-opacity duration-200">
+                    {active + 1} / {ev.photos.length}
+                  </div>
                 </div>
 
                 {/* Thumbnails */}
