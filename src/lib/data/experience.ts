@@ -2,31 +2,40 @@ import type { ExperienceItem } from '@/types'
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    period: '2022 — Present',
+    period: 'Jan 2026 — Present',
     current: true,
     role: 'Senior Solutions Engineer',
     company: 'BitGo',
-    subtitle: 'Digital Asset Infrastructure',
+    subtitle: 'Institutional Digital Asset Custody',
     description:
-      'Leading pre-sales engineering for institutional clients across custody, wallets, staking, and settlement. Drives technical discovery, architects bespoke integration solutions, and builds trusted advisor relationships with exchanges, banks, and crypto-native enterprises. Owns the full technical sales cycle — from RFP response to proof-of-concept delivery.',
-    tags: ['MPC Custody', 'API Integrations', 'Pre-Sales', 'Wallet Infrastructure', 'Staking', 'DeFi', 'Enterprise Sales', 'PoC Architecture'],
+      'Leads pre-sales engineering on BitGo\'s largest and most complex CaaS deals — translating multi-sig, MPC, and policy-engine architecture into business outcomes that land with CISOs, COOs, and CFOs of institutional buyers. Architected a scenario-driven CaaS demo console that compressed what had been multi-week sandbox conversations into a 30-minute live walkthrough, consistently winning technical evaluations on flagship accounts. Built and shipped an internal Claude-powered knowledge agent that surfaces deal-specific security and architecture context to AEs and SEs in real time, cutting engineering escalations and accelerating demo prep. Also engineered an AI prospect-intelligence workflow that synthesizes public filings, on-chain footprint, and competitor signals into pre-call briefs — giving the GTM team a defensible first-mover edge with sophisticated institutional buyers.',
+    tags: ['MPC Custody', 'CaaS', 'Pre-Sales', 'AI Tooling', 'Demo Engineering', 'Enterprise Sales', 'PoC Architecture', 'Claude'],
   },
   {
-    period: '2020 — 2022',
+    period: 'Aug 2023 — Dec 2025',
+    role: 'Solutions Engineer',
+    company: 'BitGo',
+    subtitle: 'Institutional Digital Asset Custody',
+    description:
+      'Owned the full technical sales motion across hedge funds, exchanges, neobanks, and asset managers — running discovery, scoping, demos, POCs, and security reviews end-to-end alongside Sales. Co-led the customer-facing Matic → POL token migration program, authoring and validating migration tooling against production-grade volume and walking enterprise clients through a zero-disruption cutover. Designed and built a self-serve CaaS exploration portal where institutional prospects modeled API integration patterns, fee structures, and webhook flows against real platform behavior, turning passive demos into buyer-led validation that compressed evaluation cycles. Operationalized BitGo\'s RFP and DDQ response engine in Loopio and shipped a Claude-powered automation that cut end-to-end RFP cycle time from a 7-day standard to ~8 hours — a ~95% reduction — while lifting response accuracy for prospects competing on tight timelines. Invited speaker at India Blockchain Week 2025, presenting "Proof of Trust: BitGo" to evangelize the institutional custody narrative.',
+    tags: ['API Integrations', 'Token Migration', 'Loopio', 'RFP Automation', 'POC Design', 'Pre-Sales', 'IBW 2025'],
+  },
+  {
+    period: 'Dec 2022 — Aug 2023',
     role: 'Blockchain Developer',
-    company: 'Web3 Infrastructure',
+    company: 'Spericorn Technology',
     subtitle: 'Blockchain Engineering',
     description:
-      'Designed and developed smart contracts, on-chain protocols, and decentralized application backends. Built deep technical fluency in blockchain infrastructure, consensus mechanisms, and cryptographic primitives — a foundation that now powers credible institutional conversations at every level.',
-    tags: ['Solidity', 'Smart Contracts', 'Ethereum', 'Web3.js', 'DeFi Protocols', 'Node.js', 'Cryptography'],
+      'Shipped production-ready smart-contract systems on EVM chains for client-facing fintech products, owning Solidity development, test coverage, gas optimization, and pre-audit security review hand-offs. Engineered a crypto payment gateway and on-chain order tracking system for a crypto-native e-commerce platform — abstracting payment state, vendor settlement, and delivery verification into a single auditable contract flow that eliminated manual reconciliation for the operations team. Architected a P2P lending dApp with full automation of interest accrual, collateralization ratios, and liquidation triggers, built to 97% test coverage with hardened protections against reentrancy and oracle-manipulation vectors.',
+    tags: ['Solidity', 'Smart Contracts', 'EVM', 'Hardhat', 'DeFi', 'Gas Optimization', 'Security Review'],
   },
   {
-    period: '2019 — 2020',
+    period: 'Mar 2021 — Jul 2022',
     role: 'Systems Engineer',
     company: 'Infosys',
     subtitle: 'Enterprise Technology',
     description:
-      'Delivered enterprise IT systems design, infrastructure management, and client-facing technical solutions for large-scale global organizations. Built core skills in systems thinking, stakeholder communication, and technical problem-solving across complex enterprise environments.',
-    tags: ['Enterprise IT', 'Systems Design', 'Infrastructure', 'Client Delivery', 'Agile', 'Stakeholder Mgmt'],
+      'Delivered features on Medtronic\'s iPad-based cardiac monitoring application — implementing client-driven parameters in next-generation pacemaker firmware and validating across regulated integration test suites in a zero-defect environment. Built and maintained an automated regression test suite for IDB Bank\'s core banking platform, accelerating release cadence and measurably reducing manual QA effort on every deployment cycle.',
+    tags: ['Enterprise IT', 'Medical Devices', 'Firmware', 'Test Automation', 'Core Banking', 'Regulated Systems'],
   },
 ]
