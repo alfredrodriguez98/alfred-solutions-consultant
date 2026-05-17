@@ -30,10 +30,13 @@ export function Footer() {
             'w-1.5 h-1.5 rounded-full transition-colors duration-300',
             flash ? 'bg-emerald-400' : 'bg-accent/50',
           )} />
-          <span className={cn(
-            'transition-colors duration-300',
-            flash ? 'text-emerald-400' : 'text-muted',
-          )}>
+          <span
+            suppressHydrationWarning
+            className={cn(
+              'transition-colors duration-300',
+              flash ? 'text-emerald-400' : 'text-muted',
+            )}
+          >
             ETH #{display}
           </span>
           <span className="text-muted/30 text-[10px]">live</span>

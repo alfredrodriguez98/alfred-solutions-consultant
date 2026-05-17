@@ -23,7 +23,6 @@ export function Hero() {
 
   useParticleSphere(canvasRef, { isDark: resolvedTheme !== 'light' })
 
-  // Sphere click easter egg
   const clicksRef = useRef(0)
   const clearRef  = useRef<ReturnType<typeof setTimeout>>()
   const handleSphereClick = () => {
@@ -33,7 +32,6 @@ export function Hero() {
     if (clicksRef.current >= 5) { clicksRef.current = 0; showBlockMined() }
   }
 
-  // Quote hover easter egg
   const [genesisTimer, setGenesisTimer] = useState<ReturnType<typeof setTimeout>>()
   const handleQuoteEnter = () => setGenesisTimer(setTimeout(showGenesis, 2500))
   const handleQuoteLeave = () => clearTimeout(genesisTimer)
@@ -48,7 +46,7 @@ export function Hero() {
         onClick={handleSphereClick}
       />
 
-      {/* Multi-layer ambient glow — rich depth */}
+      {/* Multi-layer ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -104,27 +102,28 @@ export function Hero() {
           <span className="text-foreground font-semibold">digital asset infrastructure</span>
         </motion.p>
 
-        {/* Quote */}
+        {/* Quote — floats over the globe */}
         <motion.div
           {...FADE_UP(0.65)}
-          className="max-w-[580px] mx-auto mb-12"
+          className="max-w-[520px] mx-auto mb-12"
           onMouseEnter={handleQuoteEnter}
           onMouseLeave={handleQuoteLeave}
         >
-          <div className="relative px-8 py-5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl">
-            <span
-              className="absolute -top-3 left-8 text-3xl font-serif text-accent/50 leading-none select-none"
-              aria-hidden
-            >
-              "
-            </span>
-            <p className="text-[clamp(15px,1.7vw,18px)] font-medium italic text-muted tracking-tight leading-relaxed">
-              Crypto is already{' '}
-              <em className="not-italic text-foreground font-semibold">complicated enough.</em>
-              <br className="hidden sm:block" />
-              {' '}The path to it shouldn't be.
-            </p>
-          </div>
+          <p
+            className="text-[28px] font-serif text-muted/50 leading-none mb-2 select-none"
+            aria-hidden
+          >
+            &ldquo;
+          </p>
+          <p
+            className="text-[clamp(15px,1.7vw,18px)] font-medium italic text-muted/80 tracking-tight leading-relaxed"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
+          >
+            Crypto is already{' '}
+            <em className="not-italic text-foreground font-semibold">complicated enough.</em>
+            <br />
+            The path to it shouldn't be.
+          </p>
         </motion.div>
 
         {/* CTAs */}
@@ -144,24 +143,8 @@ export function Hero() {
             Let's Connect
           </a>
         </motion.div>
-      </div>
 
-      {/* Scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 0.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <div className="w-[20px] h-8 rounded-full border border-accent/30 flex justify-center pt-1.5">
-          <motion.div
-            className="w-[2.5px] h-[7px] rounded-full bg-accent/60"
-            animate={{ y: [0, 8, 0], opacity: [0.8, 0, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </div>
-        <span className="text-[9.5px] tracking-[2.5px] uppercase text-muted/50 font-medium">Scroll</span>
-      </motion.div>
+      </div>
     </section>
   )
 }
