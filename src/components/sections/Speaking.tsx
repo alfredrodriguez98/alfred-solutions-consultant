@@ -4,6 +4,7 @@ import { useState }   from 'react'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { GradientText } from '@/components/ui/GradientText'
 import { SPEAKING_EVENTS } from '@/lib/data/speaking'
+import { asset }          from '@/lib/utils/basePath'
 
 export function Speaking() {
   const [active, setActive] = useState(0)
@@ -61,7 +62,7 @@ export function Speaking() {
                 {/* Main photo */}
                 <div className="relative w-full aspect-[4/3] overflow-hidden bg-[var(--icon-bg)] group/photo">
                   <img
-                    src={ev.photos[active].src}
+                    src={asset(ev.photos[active].src)}
                     alt={ev.photos[active].alt}
                     className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
                   />
@@ -109,7 +110,7 @@ export function Speaking() {
                       }`}
                     >
                       <img
-                        src={ph.src}
+                        src={asset(ph.src)}
                         alt={ph.alt}
                         className="absolute inset-0 w-full h-full object-cover"
                       />

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/alfred-solutions-consultant',
+  basePath: process.env.NODE_ENV === 'production' ? '/alfred-solutions-consultant' : '',
   images: { unoptimized: true },
 }
 

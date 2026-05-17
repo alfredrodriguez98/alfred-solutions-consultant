@@ -1,30 +1,29 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
+import { motion }            from 'framer-motion'
+import { useTheme }          from 'next-themes'
+import { ArrowRight, Mail }  from 'lucide-react'
 import { useParticleSphere } from '@/hooks/useParticleCanvas'
 import { useEasterEggs }     from '@/components/easter-eggs/EasterEggProvider'
 import { GradientText }      from '@/components/ui/GradientText'
-import { Button }            from '@/components/ui/Button'
+
+const EASE = [0.23, 1, 0.32, 1] as const
 
 const FADE_UP = (delay: number) => ({
-  initial:    { opacity: 0, y: 32 },
+  initial:    { opacity: 0, y: 20 },
   animate:    { opacity: 1, y: 0  },
-  transition: { duration: 0.9, delay, ease: [0.19, 1, 0.22, 1] },
+  transition: { duration: 0.7, delay, ease: EASE },
 })
-
-const SECTION_ID = 'hero'
 
 export function Hero() {
   const canvasRef            = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme }    = useTheme()
   const { showBlockMined, showGenesis } = useEasterEggs()
 
-  // 3-D sphere
   useParticleSphere(canvasRef, { isDark: resolvedTheme !== 'light' })
 
-  // Sphere click counter → Block Mined easter egg
+  // Sphere click easter egg
   const clicksRef = useRef(0)
   const clearRef  = useRef<ReturnType<typeof setTimeout>>()
   const handleSphereClick = () => {
@@ -34,79 +33,116 @@ export function Hero() {
     if (clicksRef.current >= 5) { clicksRef.current = 0; showBlockMined() }
   }
 
-  // Quote hover → Genesis quote easter egg
+  // Quote hover easter egg
   const [genesisTimer, setGenesisTimer] = useState<ReturnType<typeof setTimeout>>()
   const handleQuoteEnter = () => setGenesisTimer(setTimeout(showGenesis, 2500))
   const handleQuoteLeave = () => clearTimeout(genesisTimer)
 
   return (
-    <section id={SECTION_ID} className="relative min-h-svh flex flex-col items-center justify-center text-center px-6 pb-20 pt-[120px] overflow-hidden">
+    <section id="hero" className="relative min-h-svh flex flex-col items-center justify-center text-center px-6 pb-24 pt-[110px] overflow-hidden">
+
       {/* Particle sphere canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-70 cursor-pointer"
+        className="absolute inset-0 w-full h-full opacity-60 cursor-pointer"
         onClick={handleSphereClick}
       />
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none"
+      {/* Multi-layer ambient glow — rich depth */}
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(79,142,247,0.1) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 75% 70%, rgba(124,111,247,0.08) 0%, transparent 60%)',
+          background: [
+            'radial-gradient(ellipse 90% 70% at 50% 30%, rgba(79,142,247,0.12) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 80% 70%, rgba(124,111,247,0.08) 0%, transparent 55%)',
+            'radial-gradient(ellipse 40% 30% at 20% 80%, rgba(168,85,247,0.07) 0%, transparent 50%)',
+          ].join(', '),
+        }}
+      />
+
+      {/* Subtle mesh grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.04]"
+        style={{
+          backgroundImage: `
+            linear-gradient(var(--foreground) 1px, transparent 1px),
+            linear-gradient(90deg, var(--foreground) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+          maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%)',
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-[880px]">
-        <motion.div {...FADE_UP(0.3)}
-          className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full text-[12px] font-bold tracking-[1.5px] uppercase text-accent border border-[var(--card-border)] bg-[var(--nav-btn)] backdrop-blur-xl"
+      <div className="relative z-10 max-w-[900px] w-full">
+
+        {/* Status badge */}
+        <motion.div {...FADE_UP(0.2)}
+          className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full text-[11.5px] font-bold tracking-[1.5px] uppercase text-accent border border-accent/20 bg-accent/5 backdrop-blur-xl"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse2" />
           Senior Solutions Engineer &nbsp;·&nbsp; BitGo
         </motion.div>
 
-        <motion.h1 {...FADE_UP(0.5)} className="text-[clamp(60px,9vw,104px)] font-extrabold tracking-[-4px] leading-[0.95] mb-6">
+        {/* Name */}
+        <motion.h1
+          {...FADE_UP(0.35)}
+          className="text-[clamp(58px,8.5vw,100px)] font-black tracking-[-4px] leading-[0.93] mb-5"
+        >
           <span className="block">Alfred</span>
           <GradientText>Rodriguez</GradientText>
         </motion.h1>
 
-        <motion.p {...FADE_UP(0.65)} className="text-[clamp(17px,2vw,22px)] text-muted mb-10 tracking-tight">
-          Bridging <strong className="text-foreground font-semibold">institutional finance</strong> and{' '}
-          <strong className="text-foreground font-semibold">digital asset infrastructure</strong>
+        {/* Tagline */}
+        <motion.p
+          {...FADE_UP(0.5)}
+          className="text-[clamp(16px,2vw,20px)] text-muted mb-10 tracking-tight max-w-[540px] mx-auto leading-relaxed"
+        >
+          Bridging{' '}
+          <span className="text-foreground font-semibold">institutional finance</span>
+          {' '}and{' '}
+          <span className="text-foreground font-semibold">digital asset infrastructure</span>
         </motion.p>
 
         {/* Quote */}
-        <motion.div {...FADE_UP(0.8)}
-          className="max-w-[620px] mx-auto mb-14"
+        <motion.div
+          {...FADE_UP(0.65)}
+          className="max-w-[580px] mx-auto mb-12"
           onMouseEnter={handleQuoteEnter}
           onMouseLeave={handleQuoteLeave}
         >
-          <div className="flex items-center gap-5 mb-3">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-            <span className="text-accent text-4xl font-serif opacity-70">"</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+          <div className="relative px-8 py-5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl">
+            <span
+              className="absolute -top-3 left-8 text-3xl font-serif text-accent/50 leading-none select-none"
+              aria-hidden
+            >
+              "
+            </span>
+            <p className="text-[clamp(15px,1.7vw,18px)] font-medium italic text-muted tracking-tight leading-relaxed">
+              Crypto is already{' '}
+              <em className="not-italic text-foreground font-semibold">complicated enough.</em>
+              <br className="hidden sm:block" />
+              {' '}The path to it shouldn't be.
+            </p>
           </div>
-          <p className="text-[clamp(17px,2vw,21px)] font-medium italic text-muted tracking-tight leading-relaxed">
-            Crypto is already{' '}
-            <em className="not-italic text-foreground font-semibold">complicated enough.</em>
-            <br />
-            The path to it shouldn't be.
-          </p>
         </motion.div>
 
         {/* CTAs */}
-        <motion.div {...FADE_UP(0.95)} className="flex gap-3.5 items-center justify-center flex-wrap">
-          <Button href="#problems" variant="primary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2L14 8L8 14M2 8H14" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+        <motion.div {...FADE_UP(0.8)} className="flex gap-3 items-center justify-center flex-wrap">
+          <a
+            href="#problems"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14.5px] font-semibold bg-gradient-to-br from-accent via-accent-violet to-accent-purple text-white shadow-accent-sm hover:shadow-accent-md hover:opacity-95 transition-all duration-200 active:scale-[0.97] press-feedback"
+          >
             View My Work
-          </Button>
-          <Button href="#contact" variant="secondary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 4h12v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4zm0 0l6 5 6-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <ArrowRight size={15} />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14.5px] font-semibold border border-[var(--card-border)] bg-[var(--nav-btn)] text-foreground backdrop-blur-xl hover:bg-[var(--nav-btn-hover)] hover:border-accent/30 transition-all duration-200 active:scale-[0.97] press-feedback"
+          >
+            <Mail size={15} />
             Let's Connect
-          </Button>
+          </a>
         </motion.div>
       </div>
 
@@ -114,17 +150,17 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5"
+        transition={{ delay: 1.3, duration: 0.6 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <div className="w-[22px] h-9 rounded-full border border-accent/40 flex justify-center pt-1.5">
+        <div className="w-[20px] h-8 rounded-full border border-accent/30 flex justify-center pt-1.5">
           <motion.div
-            className="w-[3px] h-2 rounded-full bg-accent"
-            animate={{ y: [0, 10, 0], opacity: [1, 0, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: [0.83, 0, 0.17, 1] }}
+            className="w-[2.5px] h-[7px] rounded-full bg-accent/60"
+            animate={{ y: [0, 8, 0], opacity: [0.8, 0, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
-        <span className="text-[10px] tracking-[2.5px] uppercase text-muted/60">Scroll</span>
+        <span className="text-[9.5px] tracking-[2.5px] uppercase text-muted/50 font-medium">Scroll</span>
       </motion.div>
     </section>
   )
