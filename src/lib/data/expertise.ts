@@ -1,4 +1,8 @@
-import type { ExpertiseItem } from '@/types'
+export interface ExpertiseItem {
+  icon:        string
+  title:       string
+  description: string
+}
 
 export const EXPERTISE: ExpertiseItem[] = [
   {

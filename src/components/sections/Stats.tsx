@@ -5,7 +5,7 @@ import { useInView }    from 'framer-motion'
 import { STATS }        from '@/lib/data/stats'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
-const DURATION_MS = 1800
+const DURATION_MS = 1600
 
 function useCountUp(target: number, active: boolean) {
   const [count, setCount] = useState(0)
@@ -16,7 +16,6 @@ function useCountUp(target: number, active: boolean) {
     const step = (ts: number) => {
       if (!start) start = ts
       const progress = Math.min((ts - start) / DURATION_MS, 1)
-      // Ease-out expo
       const eased = 1 - Math.pow(1 - progress, 4)
       setCount(Math.round(eased * target))
       if (progress < 1) requestAnimationFrame(step)
@@ -40,11 +39,11 @@ function StatCard({ value, suffix, label, active, delay }: StatCardProps) {
 
   return (
     <ScrollReveal delay={delay}>
-      <div className="flex flex-col items-center gap-1 px-8 py-6 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm text-center">
-        <span className="text-[clamp(48px,6vw,72px)] font-black tracking-[-3px] leading-none bg-gradient-to-br from-accent to-accent-violet bg-clip-text text-transparent">
+      <div className="flex flex-col items-center gap-2 px-6 py-8 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-center">
+        <span className="text-[clamp(42px,5.5vw,68px)] font-black tracking-[-3px] leading-none bg-gradient-to-br from-accent to-accent-violet bg-clip-text text-transparent tabular-nums">
           {count}{suffix}
         </span>
-        <span className="text-sm tracking-[1.5px] uppercase text-muted font-medium">{label}</span>
+        <span className="text-[11px] tracking-[2px] uppercase text-muted font-semibold">{label}</span>
       </div>
     </ScrollReveal>
   )
@@ -52,13 +51,13 @@ function StatCard({ value, suffix, label, active, delay }: StatCardProps) {
 
 export function Stats() {
   const ref    = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} id="stats" className="py-20 px-6 border-y border-[var(--strip-border)]">
-      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section ref={ref} id="stats" className="py-20 px-6 border-y border-[var(--strip-border)] bg-[var(--strip-bg)]">
+      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
         {STATS.map((stat, i) => (
-          <StatCard key={stat.label} {...stat} active={inView} delay={i * 0.1} />
+          <StatCard key={stat.label} {...stat} active={inView} delay={i * 0.08} />
         ))}
       </div>
     </section>
